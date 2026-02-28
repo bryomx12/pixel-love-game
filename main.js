@@ -8,22 +8,22 @@ kaboom({
 });
 
 // 1. ASSET LOADING
-loadSprite("popeye-walk", "/popeye-walk.png", {
+loadSprite("popeye-walk", "popeye-walk.png", {
     sliceX: 5, sliceY: 1, anims: { "walk": { from: 0, to: 4, loop: true, speed: 12 } }
 });
-loadSprite("popeye-climb", "/popeye-climb.png", {
+loadSprite("popeye-climb", "popeye-climb.png", {
     sliceX: 2, sliceY: 1, anims: { "climb": { from: 0, to: 1, loop: true, speed: 10 } }
 });
-loadSprite("olive-walk", "/olive-walk.png", {
+loadSprite("olive-walk", "olive-walk.png", {
     sliceX: 5, sliceY: 1, anims: { "walk": { from: 0, to: 4, loop: true, speed: 8 } }
 });
-loadSprite("brutus", "/brutus.png", {
+loadSprite("brutus", "brutus.png", {
     sliceX: 5, sliceY: 1, anims: { "walk": { from: 0, to: 4, loop: true, speed: 10 } }
 });
-loadSprite("heart", "/heart.png", {
+loadSprite("heart", "heart.png", {
     sliceX: 5, sliceY: 1, anims: { "beat": { from: 0, to: 4, loop: true, speed: 10 } }
 });
-loadSprite("spinach", "/spinach.png", {
+loadSprite("spinach", "spinach.png", {
     sliceX: 2, sliceY: 1, anims: { "flash": { from: 0, to: 1, loop: true, speed: 4 } }
 });
 
