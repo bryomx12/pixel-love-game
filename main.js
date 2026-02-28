@@ -3,8 +3,8 @@ import kaboom from "https://unpkg.com/kaboom@3000.1.17/dist/kaboom.mjs";
 kaboom({
     width: 800,
     height: 600,
-    background: [15, 15, 25], 
-    letterbox: true, 
+    background: [15, 15, 25],
+    letterbox: true,
 });
 
 // 1. ASSET LOADING
