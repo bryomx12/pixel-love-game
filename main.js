@@ -7,7 +7,7 @@ kaboom({
     letterbox: true,
 });
 
-// 1. ASSET LOADING
+// 1. ASSET LOADING (Clean paths so GitHub can find them!)
 loadSprite("popeye-walk", "popeye-walk.png", {
     sliceX: 5, sliceY: 1, anims: { "walk": { from: 0, to: 4, loop: true, speed: 12 } }
 });
@@ -33,8 +33,13 @@ scene("game", () => {
     let isPoweredUp = false; 
     setGravity(1200);
 
+    // --- UI: LABELS & INSTRUCTIONS ---
     const scoreLabel = add([text(`SCORE: ${score}`, { size: 24 }), pos(20, 20)]);
     const livesLabel = add([text(`LIVES: ${lives}`, { size: 24 }), pos(20, 50), color(255, 50, 50)]);
+    
+    // New On-Screen Instructions
+    add([text("CONTROLS: Arrows to Move & Climb", { size: 18 }), pos(20, 85)]);
+    add([text("SPINACH: Grab to turn YELLOW and defeat Brutus!", { size: 18 }), pos(20, 110), color(50, 255, 50)]);
 
     // 2. LADDERS
     function createLadder(x) {
@@ -77,7 +82,7 @@ scene("game", () => {
     ]);
     brutus.play("walk");
 
-    // 6. PLAYER LOGIC (With Animation Fix & Screen Loop)
+    // 6. PLAYER LOGIC
     onUpdate("player", (p) => {
         const onLadder = get("ladder").some(l => p.isOverlapping(l));
         const onFloor = get("platform").some(f => p.isOverlapping(f));
@@ -105,19 +110,19 @@ scene("game", () => {
             p.move(-250, 0); 
             p.flipX = true;
             if (!p.isClimbing && p.curAnim() !== "walk") {
-                p.use(sprite("popeye-walk")); // Force re-sync walk sprite
+                p.use(sprite("popeye-walk")); 
                 p.play("walk");
             }
         } else if (isKeyDown("right")) {
             p.move(250, 0); 
             p.flipX = false;
             if (!p.isClimbing && p.curAnim() !== "walk") {
-                p.use(sprite("popeye-walk")); // Force re-sync walk sprite
+                p.use(sprite("popeye-walk")); 
                 p.play("walk");
             }
         }
 
-        // Vertical Movement
+        // Vertical Movement (With Climbing Animation)
         if (p.isClimbing) {
             if (p.sprite !== "popeye-climb") p.use(sprite("popeye-climb"));
             if (isKeyDown("up")) {
@@ -127,10 +132,10 @@ scene("game", () => {
                 p.pos.y += 4;
                 if (p.curAnim() !== "climb") p.play("climb");
             } else {
-                p.stop();
+                p.stop(); // Stops animation when standing still on ladder
             }
         } else {
-            // Stop animation if standing still
+            // Stop animation if standing still on the floor
             if (!isKeyDown("left") && !isKeyDown("right")) {
                 p.stop();
                 p.frame = 0; 
